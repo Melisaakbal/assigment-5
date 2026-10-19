@@ -1,0 +1,70 @@
+import { useState } from "react";
+import ProductList from "./components/ProductList";
+import FilterBar from "./components/FilterBar";
+
+const initialProducts = [
+  { id: 1, name: "Kablosuz Kulaklık", category: "Elektronik", price: 750, stock: 12 },
+  { id: 2, name: "Akıllı Saat", category: "Elektronik", price: 1250, stock: 4 },
+  { id: 3, name: "Sırt Çantası", category: "Aksesuar", price: 450, stock: 0 },
+  { id: 4, name: "Termos Matara", category: "Yaşam", price: 300, stock: 25 },
+  { id: 5, name: "Masa Lambası", category: "Elektronik", price: 600, stock: 8 },
+  { id: 6, name: "Güneş Gözlüğü", category: "Aksesuar", price: 900, stock: 0 }
+];
+
+export default function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Hepsi");
+  const [cart, setCart] = useState([]);
+
+  const categories = [...new Set(initialProducts.map((p) => p.category))];
+
+  const handleAddToCart = (product) => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
+
+  const filteredProducts = initialProducts.filter((product) => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "Hepsi" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  const appStyle = {
+    maxWidth: "900px",
+    margin: "40px auto",
+    padding: "20px",
+    fontFamily: "Arial, sans-serif"
+  };
+
+  const headerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "20px",
+    borderBottom: "2px solid #eee",
+    paddingBottom: "10px"
+  };
+
+  return (
+    <div style={appStyle}>
+      <header style={headerStyle}>
+        <h1>Ürün Yönetim Paneli</h1>
+        <div style={{ backgroundColor: "#e3f2fd", padding: "8px 14px", borderRadius: "6px", fontWeight: "bold", color: "#1565c0" }}>
+          Sepet Ürün Sayısı: {cart.length}
+        </div>
+      </header>
+
+      <FilterBar
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+        categories={categories}
+      />
+
+      <ProductList
+        products={filteredProducts}
+        onAddToCart={handleAddToCart}
+      />
+    </div>
+  );
+}
