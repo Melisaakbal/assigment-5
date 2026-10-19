@@ -1,16 +1,21 @@
-# React + Vite
+# React Product Dashboard (Assignment 5)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a product management dashboard built with React, featuring search, category filtering, and cart management capabilities.
 
-Currently, two official plugins are available:
+## Requirements and Features
+- **Functional Components & Props:** Components are designed in a modular structure (`Card`, `Product`, `ProductList`, `FilterBar`).
+- **State Management:** Search, category filtering, and cart operations are managed using the `useState` hook.
+- **Conditional Rendering:** Dynamic button and badge renderings based on stock availability.
+- **Controlled Inputs:** Search bar and category selection operate as controlled components.
+- **No External Libraries:** Built entirely using inline styles and standard React patterns.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Installation and Setup
 
-## React Compiler
+To run the project locally, use the following commands:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Start the development server
+npm run dev
